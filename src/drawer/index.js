@@ -1,4 +1,5 @@
 import { metaballs } from '../metaballs';
+import { highlights } from "../highlights";
 import { delimiters } from './delimiters';
 import dropsFactory from './drops';
 import labelsFactory from './labels';
@@ -52,7 +53,7 @@ export default (svg, dimensions, scales, configuration) => {
     if (configuration.metaballs) {
         dropsContainer.style('filter', 'url(#metaballs)');
     }
-    if(configuration.highlights){
+    if (configuration.highlights) {
         highlights(defs);
     }
 
