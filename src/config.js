@@ -56,6 +56,7 @@ const config = {
     eventLineColor: 'black',
     eventColor: null,
     metaballs: true,
+    highlights: true,
     zoomable: true,
 };
 

@@ -52,6 +52,9 @@ export default (svg, dimensions, scales, configuration) => {
     if (configuration.metaballs) {
         dropsContainer.style('filter', 'url(#metaballs)');
     }
+    if(configuration.highlights){
+        highlights(defs);
+    }
 
     chartWrapper
         .append('g')
