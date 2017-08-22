@@ -1,5 +1,6 @@
 import { metaballs } from '../metaballs';
 import { highlights } from "../highlights";
+import  shapesFactory  from './shapes';
 import { delimiters } from './delimiters';
 import dropsFactory from './drops';
 import labelsFactory from './labels';
@@ -79,6 +80,8 @@ export default (svg, dimensions, scales, configuration) => {
     
     const drops = dropsFactory(dropsContainer, scales, configuration);
 
+    const shapes = shapesFactory(dropsContainer,scales,configuration);
+
     return data => {
         lineSeparator(axesContainer, data);
         delimiters(
@@ -88,6 +91,7 @@ export default (svg, dimensions, scales, configuration) => {
             configuration.dateFormat
         );
         drops(data);
+        shapes(data);
         labels(data);
         if (boolOrReturnValue(configuration.hasTopAxis, data)) {
             drawTopAxis(axesContainer, scales.x, configuration, dimensions);
