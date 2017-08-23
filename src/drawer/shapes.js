@@ -21,7 +21,7 @@ export default (container, scales, configuration) =>
             .filter( d => {if (d.shape) {return d;}return false;})
             .append('path')
             .attr('d',  d3.symbol().size(140).type(d3.symbolStar))
-            .attr('fill', configuration.shapes[d.shape].fill)
+            .attr('fill', d =>  configuration.shapes[d.shape].fill)
             .classed('shape', true)
             .attr('stroke','white')
             .attr('stroke-width',1)
