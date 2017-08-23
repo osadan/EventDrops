@@ -40,8 +40,8 @@ export default (
                     )(data),
                     dates: {
                         from: domain[0],
-                        to: domain[1]
-                    }
+                        to: domain[1],
+                    },
                 };
 
                 delimiters(
@@ -61,12 +61,21 @@ export default (
         );
 
         requestAnimationFrame(() => {
-            const drops = container
+            container
                 .selectAll('.drop-line')
                 .selectAll('.drop')
                 .attr('cx', (d, i) => {
                     return scalingFunction(new Date(d.date));
                 });
+
+            container
+                .selectAll('.shape-line')
+                .selectAll('.shape')
+                .attr(
+                    'transform',
+                    d =>
+                        `translate(${scalingFunction(configuration.date(d))},${configuration.shapes[d.shape].offsetY})`
+                );
 
             sumDataCount(data, result => {
                 if (callback) {
@@ -79,7 +88,7 @@ export default (
     const zoomEnd = (data, index, element) => {
         const scalingFunction = d3.event.transform.rescaleX(scales.x);
         const domain = scalingFunction.domain();
-        configuration.zoomend({dates: {from: domain[0], to: domain[1]}});
+        configuration.zoomend({ dates: { from: domain[0], to: domain[1] } });
     };
 
     const zoom = d3
