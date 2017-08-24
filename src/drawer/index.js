@@ -51,6 +51,11 @@ export default (svg, dimensions, scales, configuration) => {
         .classed('drops-container', true)
         .attr('clip-path', 'url(#drops-container-clipper)');
 
+    const shapesContainer = chartWrapper
+        .append('g')
+        .classed('shapes-container', true)
+        .attr('clip-path', 'url(#drops-container-clipper)');
+
     if (configuration.metaballs) {
         dropsContainer.style('filter', 'url(#metaballs)');
     }
@@ -80,7 +85,7 @@ export default (svg, dimensions, scales, configuration) => {
     
     const drops = dropsFactory(dropsContainer, scales, configuration);
 
-    const shapes = shapesFactory(dropsContainer,scales,configuration);
+    const shapes = shapesFactory(shapesContainer,scales,configuration);
 
     return data => {
         lineSeparator(axesContainer, data);

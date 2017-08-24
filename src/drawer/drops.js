@@ -20,6 +20,7 @@ export default (container, scales, configuration) =>
         drops
             .data(d => d.data)
             .enter()
+            .filter( d => {if (!d.shape) {return d;}return false;})
             .append('circle')
             .classed('drop', true)
             .attr('r', 5)
